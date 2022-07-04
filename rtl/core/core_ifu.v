@@ -42,7 +42,23 @@ module core_ifu #(
     input clk,
     input rst_n
 );
-
+    
     /*TODO*/
+    wire [`CPU_INSTR_SIZE-1:0] instr_fetched_me;
+    wire [`CPU_PC_SIZE-1:0] pc_addr_me;
+    wire [`CPU_PC_SIZE-1:0] pc_o_me;
+    wire [`CPU_INSTR_SIZE-1:0] instr_o_me;
+
+    assign instr_fetched_me = instr_fetched;
+    assign pc_addr = pc_addr_me;
+    //assign pc_o = pc_o_me;
+    assign instr_o = instr_o_me;
+
+    assign pc_addr_me = pc_o_me;
+    assign pc_o_me = (instr_fetched_me == `Hold_Pc) ? pc_o_me : (pc_o_me + 4'b4);
+    assign instr_o_me = 
+
+    //暂时放下，有些地方没有搞明白
+
 
 endmodule
